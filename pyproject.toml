@@ -7,7 +7,7 @@ name = "turbo-quant"
 version = "0.1.0"
 description = "Near-optimal weight quantization for LLMs using the TurboQuant algorithm"
 readme = "README.md"
-license = {text = "GPL-3.0"}
+license = "GPL-3.0-only"
 requires-python = ">=3.10"
 authors = [
     {name = "Kuldeep Singh Sidhu", email = "singhsidhukuldeep@gmail.com"},
@@ -20,7 +20,6 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -45,7 +44,7 @@ dev = [
     "ruff>=0.3.0",
 ]
 all = [
-    "turboquant[transformers,dev]",
+    "turbo-quant[transformers,dev]",
 ]
 
 [project.scripts]
