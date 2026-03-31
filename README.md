@@ -1,6 +1,21 @@
-# turboQuant
+<h1 align="center">turboQuant</h1>
 
-Weight quantization for Large Language Models, adapted from the [TurboQuant algorithm](https://arxiv.org/abs/2504.19874) by Google Research (ICLR 2026).
+<p align="center">
+  <a href="https://pypi.org/project/turboquant-hf/">
+    <img src="https://storage.googleapis.com/gweb-research2023-media/images/Quantization-3.width-1250.png" width="1080" alt="Go to https://pypi.org/project/turboquant-hf/">
+  </a>
+</p>
+
+<p align="center">
+<b>Weight quantization for Large Language Models</b><br> Adapted from the <a href="https://arxiv.org/abs/2504.19874">TurboQuant algorithm</a> by Google Research (ICLR 2026)<br>
+<a href="https://pypi.org/project/turboquant-hf/"><img src="https://img.shields.io/pypi/pyversions/turboquant-hf" alt="Go to https://pypi.org/project/turboquant-hf/"/></a>
+<a href="https://pypi.org/project/turboquant-hf/"><img src="https://img.shields.io/pypi/v/turboquant-hf" alt="Go to https://pypi.org/project/turboquant-hf/"/></a>
+<a href="https://pypi.org/project/turboquant-hf/"><img src="https://img.shields.io/pypi/status/turboquant-hf" alt="Go to https://pypi.org/project/turboquant-hf/"/></a>
+<!-- <a href="https://pypi.org/project/turboquant-hf/"><img src="https://img.shields.io/pypi/format/turboquant-hf" alt="Go to https://pypi.org/project/turboquant-hf/"/></a> -->
+<a href="https://pypistats.org/packages/turboquant-hf"><img src="https://img.shields.io/pypi/dm/turboquant-hf"/></a>
+<!-- <img src="https://visitor-badge.glitch.me/badge?page_id=turboquant-hf" alt="Go to https://pypi.org/project/turboquant-hf/"/> -->
+<img src="https://static.pepy.tech/personalized-badge/turboquant-hf?period=total&units=none&left_color=black&right_color=brightgreen&left_text=Total%20Downloads" alt="Go to https://pypi.org/project/turboquant-hf/"/>
+</p>
 
 Quantize any HuggingFace model to 2-4 bits per weight with minimal quality loss. No calibration data required.
 
