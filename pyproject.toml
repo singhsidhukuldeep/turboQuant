@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "turbo-quant"
+version = "0.1.0"
+description = "Near-optimal weight quantization for LLMs using the TurboQuant algorithm"
+readme = "README.md"
+license = {text = "GPL-3.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Kuldeep Singh Sidhu", email = "singhsidhukuldeep@gmail.com"},
+]
+keywords = [
+    "quantization", "llm", "compression", "transformers", "deep-learning",
+    "turboquant", "weight-quantization", "model-compression",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.1.0",
+]
+
+[project.optional-dependencies]
+transformers = [
+    "transformers>=4.38.0",
+    "accelerate>=0.26.0",
+    "sentencepiece>=0.1.99",
+    "protobuf>=3.20.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.3.0",
+]
+all = [
+    "turboquant[transformers,dev]",
+]
+
+[project.scripts]
+turboquant = "turboquant.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/singhsidhukuldeep/turboQuant"
+Repository = "https://github.com/singhsidhukuldeep/turboQuant"
+Issues = "https://github.com/singhsidhukuldeep/turboQuant/issues"
+
+[tool.setuptools.packages.find]
+include = ["turboquant*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
