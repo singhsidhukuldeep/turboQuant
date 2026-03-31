@@ -179,7 +179,7 @@ def _get_model_class(model_name_or_path: str, task_hint: Optional[str] = None):
     except ImportError:
         raise ImportError(
             "transformers is required for loading models. "
-            "Install with: pip install turbo-quant[transformers]"
+            "Install with: pip install turboquant-hf[transformers]"
         )
 
     hint_map = {

@@ -23,7 +23,7 @@ def cmd_quantize(args):
         from transformers import AutoTokenizer
     except ImportError:
         logger.error(
-            "transformers is required. Install with: pip install turbo-quant[transformers]"
+            "transformers is required. Install with: pip install turboquant-hf[transformers]"
         )
         sys.exit(1)
 
@@ -71,7 +71,7 @@ def cmd_estimate(args):
         import transformers  # noqa: F401
     except ImportError:
         logger.error(
-            "transformers is required. Install with: pip install turbo-quant[transformers]"
+            "transformers is required. Install with: pip install turboquant-hf[transformers]"
         )
         sys.exit(1)
 
@@ -113,7 +113,7 @@ def cmd_generate(args):
         from transformers import AutoTokenizer
     except ImportError:
         logger.error(
-            "transformers is required. Install with: pip install turbo-quant[transformers]"
+            "transformers is required. Install with: pip install turboquant-hf[transformers]"
         )
         sys.exit(1)
 

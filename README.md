@@ -18,13 +18,13 @@ Quantize any HuggingFace model to 2-4 bits per weight with minimal quality loss.
 
 ```bash
 # Core (PyTorch only)
-pip install turbo-quant
+pip install turboquant-hf
 
 # With HuggingFace support (recommended)
-pip install turbo-quant[transformers]
+pip install turboquant-hf[transformers]
 
 # Development
-pip install turbo-quant[dev]
+pip install turboquant-hf[dev]
 ```
 
 Or install from source:

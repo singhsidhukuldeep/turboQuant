@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "turbo-quant"
+name = "turboquant-hf"
 version = "0.1.0"
 description = "Near-optimal weight quantization for LLMs using the TurboQuant algorithm"
 readme = "README.md"
@@ -44,7 +44,7 @@ dev = [
     "ruff>=0.3.0",
 ]
 all = [
-    "turbo-quant[transformers,dev]",
+    "turboquant-hf[transformers,dev]",
 ]
 
 [project.scripts]
