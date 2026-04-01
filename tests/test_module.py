@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 
 from turboquant.config import TurboQuantConfig
+from turboquant.model import _assign_state_dict
 from turboquant.module import TurboQuantLinear
 
 
@@ -84,7 +85,7 @@ class TestTurboQuantLinear:
 
         tql2 = TurboQuantLinear(128, 64, bias=True, config=config)
         state_loaded = torch.load(tmp_path / "tql.pt", weights_only=True)
-        tql2.load_state_dict(state_loaded)
+        _assign_state_dict(tql2, state_loaded)
 
         x = torch.randn(4, 128)
         y1 = tql(x)
@@ -102,7 +103,7 @@ class TestTurboQuantLinear:
 
         tql2 = TurboQuantLinear(50, 32, bias=True, config=config)
         state_loaded = torch.load(tmp_path / "tql_rem.pt", weights_only=True)
-        tql2.load_state_dict(state_loaded)
+        _assign_state_dict(tql2, state_loaded)
 
         x = torch.randn(4, 50)
         y1 = tql(x)

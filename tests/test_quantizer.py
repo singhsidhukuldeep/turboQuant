@@ -138,7 +138,7 @@ class TestTurboQuantConfig:
 
     def test_invalid_compute_dtype(self):
         with pytest.raises(ValueError):
-            TurboQuantConfig(compute_dtype="float16")
+            TurboQuantConfig(compute_dtype="int8")
 
     def test_serialization(self, tmp_path):
         config = TurboQuantConfig(bit_width=3, group_size=64, rotation_seed=123)

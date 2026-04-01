@@ -4,7 +4,12 @@ import torch
 import torch.nn as nn
 
 from turboquant.config import TurboQuantConfig
-from turboquant.model import estimate_model_size, quantize_model, save_quantized
+from turboquant.model import (
+    _assign_state_dict,
+    estimate_model_size,
+    quantize_model,
+    save_quantized,
+)
 from turboquant.module import TurboQuantLinear
 
 
@@ -120,11 +125,23 @@ class TestSaveLoad:
 
         save_quantized(model, config, tmp_path / "rt")
 
-        # Simulate load: create a fresh model, replace linears, load state
+        # Load into a fresh skeleton (don't re-quantize -- that would
+        # create different quantized weights from different random init)
         model2 = SimpleModel()
-        quantize_model(model2, config, verbose=False)
-        state = torch.load(tmp_path / "rt" / "quantized_weights.pt", weights_only=True)
-        model2.load_state_dict(state, strict=False, assign=True)
+        # Replace linears with empty TurboQuantLinear shells
+        for name, module in list(model2.named_modules()):
+            if isinstance(module, nn.Linear) and "lm_head" not in name:
+                parent_name, attr = name.rsplit(".", 1) if "." in name else ("", name)
+                parent = dict(model2.named_modules())[parent_name] if parent_name else model2
+                tql = TurboQuantLinear(
+                    module.in_features, module.out_features,
+                    bias=module.bias is not None, config=config,
+                )
+                setattr(parent, attr, tql)
+        state = torch.load(
+            tmp_path / "rt" / "quantized_weights.pt", weights_only=True
+        )
+        _assign_state_dict(model2, state)
 
         with torch.no_grad():
             y_after_load = model2(x)

@@ -16,6 +16,40 @@ from .module import TurboQuantLinear
 logger = logging.getLogger(__name__)
 
 
+def _assign_state_dict(model: nn.Module, state_dict: dict[str, torch.Tensor]):
+    """Load a state dict by direct assignment, handling size mismatches.
+
+    PyTorch's load_state_dict rejects shape mismatches even with assign=True.
+    This function bypasses that by setting each parameter/buffer via setattr,
+    which is necessary when loading quantized weights into freshly initialized
+    modules (whose buffers start as empty tensors).
+    """
+    model_state = dict(model.named_parameters())
+    model_state.update(dict(model.named_buffers()))
+
+    param_names = {n for n, _ in model.named_parameters()}
+
+    loaded = set()
+    for key, val in state_dict.items():
+        if key in model_state:
+            parts = key.split(".")
+            obj = model
+            for part in parts[:-1]:
+                obj = getattr(obj, part)
+            # Parameters must be wrapped in nn.Parameter; buffers are plain tensors
+            if key in param_names:
+                val = nn.Parameter(val)
+            setattr(obj, parts[-1], val)
+            loaded.add(key)
+
+    missing = set(model_state) - loaded
+    if missing:
+        logger.warning(
+            f"Missing keys when loading: {sorted(missing)[:5]}"
+            f"{'...' if len(missing) > 5 else ''}"
+        )
+
+
 def _should_skip(name: str, modules_to_not_convert: list[str]) -> bool:
     """Check if a module should be skipped during quantization."""
     return any(pattern in name for pattern in modules_to_not_convert)
@@ -273,14 +307,10 @@ def load_quantized(
         weights_only=True,
     )
 
-    missing, unexpected = model.load_state_dict(
-        state_dict, strict=False, assign=True
-    )
-    if missing:
-        logger.warning(
-            f"Missing keys when loading: {missing[:5]}"
-            f"{'...' if len(missing) > 5 else ''}"
-        )
+    # Direct assignment to handle size-mismatched buffers (empty init vs
+    # populated checkpoint). PyTorch's load_state_dict rejects shape
+    # mismatches even with assign=True.
+    _assign_state_dict(model, state_dict)
 
     # Move to device
     if device_map is not None:
