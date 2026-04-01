@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "turboquant-hf"
-version = "0.1.0"
+version = "0.1.1"
 description = "Near-optimal weight quantization for LLMs using the TurboQuant algorithm"
 readme = "README.md"
 license = "GPL-3.0-only"

@@ -16,7 +16,7 @@ Quick start::
     save_quantized(model, config, "./quantized-model")
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .config import TurboQuantConfig
 from .kv_cache import TurboQuantKVCache
