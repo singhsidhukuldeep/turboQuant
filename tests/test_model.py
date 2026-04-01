@@ -2,12 +2,10 @@
 
 import torch
 import torch.nn as nn
-import pytest
 
 from turboquant.config import TurboQuantConfig
 from turboquant.model import quantize_model, save_quantized, estimate_model_size
 from turboquant.module import TurboQuantLinear
-from turboquant.quantizer import TurboQuantizer
 
 
 class SimpleModel(nn.Module):

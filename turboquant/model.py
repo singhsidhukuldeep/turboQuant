@@ -8,6 +8,7 @@ from typing import Any, Optional
 
 import torch
 import torch.nn as nn
+from torch import Tensor
 
 from .config import TurboQuantConfig
 from .module import TurboQuantLinear

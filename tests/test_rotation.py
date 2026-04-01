@@ -1,9 +1,7 @@
 """Tests for rotation matrices."""
 
-import math
-
-import torch
 import pytest
+import torch
 
 from turboquant.rotation import (
     hadamard_rotate,

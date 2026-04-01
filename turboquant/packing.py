@@ -65,7 +65,6 @@ def _pack_3bit(indices: Tensor) -> Tensor:
     if pad > 0:
         indices = torch.cat([indices, torch.zeros(pad, dtype=torch.int32, device=indices.device)])
 
-    n_padded = indices.numel()
     indices = indices.view(-1, 8)  # (groups, 8)
 
     # Pack 8 x 3-bit values into 3 bytes (24 bits)

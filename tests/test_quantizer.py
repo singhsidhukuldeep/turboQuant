@@ -1,7 +1,7 @@
 """Tests for the core TurboQuant quantizer."""
 
-import torch
 import pytest
+import torch
 
 from turboquant.config import TurboQuantConfig
 from turboquant.quantizer import TurboQuantizer

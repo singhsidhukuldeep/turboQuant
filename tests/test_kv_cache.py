@@ -1,7 +1,7 @@
 """Tests for TurboQuant KV cache compression."""
 
-import torch
 import pytest
+import torch
 
 from turboquant.kv_cache import TurboQuantKVCache
 

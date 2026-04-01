@@ -1,7 +1,7 @@
 """Tests for bit-packing utilities."""
 
-import torch
 import pytest
+import torch
 
 from turboquant.packing import pack_indices, unpack_indices
 

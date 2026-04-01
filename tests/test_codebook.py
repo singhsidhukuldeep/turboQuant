@@ -1,7 +1,6 @@
 """Tests for the Lloyd-Max codebook generation."""
 
 import torch
-import pytest
 
 from turboquant.codebook import build_codebook, get_codebook, quantize_to_indices, dequantize_from_indices
 
