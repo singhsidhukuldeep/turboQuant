@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 
 from turboquant.config import TurboQuantConfig
-from turboquant.model import quantize_model, save_quantized, estimate_model_size
+from turboquant.model import estimate_model_size, quantize_model, save_quantized
 from turboquant.module import TurboQuantLinear
 
 

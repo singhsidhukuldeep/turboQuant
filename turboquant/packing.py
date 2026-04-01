@@ -5,7 +5,6 @@ from __future__ import annotations
 import torch
 from torch import Tensor
 
-
 # ---------------------------------------------------------------------------
 # 4-bit packing (2 values per byte)
 # ---------------------------------------------------------------------------

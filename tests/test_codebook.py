@@ -2,7 +2,12 @@
 
 import torch
 
-from turboquant.codebook import build_codebook, get_codebook, quantize_to_indices, dequantize_from_indices
+from turboquant.codebook import (
+    build_codebook,
+    dequantize_from_indices,
+    get_codebook,
+    quantize_to_indices,
+)
 
 
 class TestBuildCodebook:
